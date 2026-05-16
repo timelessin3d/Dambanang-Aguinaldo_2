@@ -1,0 +1,1179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About | The Dambanang Aguinaldo</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+:root{
+  --jaguar:#06030A;
+  --white:#ffffff;
+  --blaze-orange:#f96800;
+  --yellow-orange:#ffb200;
+  --dark-purple:#3a1f63;
+  --meteorite:#412b6b;
+  --butterfly-bush:#5c3e94;
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  background:var(--jaguar);
+  color:var(--white);
+  font-family:'Montserrat', sans-serif;
+  overflow-x:hidden;
+}
+
+a{
+  text-decoration:none;
+  color:var(--white);
+}
+
+img{
+  width:100%;
+  display:block;
+}
+/* =========================
+   HEADER CSS
+========================= */
+
+header{
+  width:100%;
+  height:75px;
+
+  background:
+  radial-gradient(circle at 50% 50%,
+  var(--dark-purple),
+  #000000);
+
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+
+  padding:0 40px;
+
+  position:fixed;
+  top:0;
+  left:0;
+  z-index:1000;
+}
+
+/* NAV */
+
+.nav-left,
+.nav-right{
+  display:flex;
+  align-items:center;
+  gap:20px;
+}
+
+.nav-item{
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+
+.nav-item a{
+  display:block;
+  padding:10px 14px;
+}
+
+/* CENTER LOGO */
+
+.logo-center{
+  position:absolute;
+  left:50%;
+  transform:translateX(-50%);
+  display:flex;
+  align-items:center;
+}
+
+/* LOGO */
+
+.logo-center img{
+  width:200px;
+  height:auto;
+}
+
+/* LINKS */
+
+.nav-link{
+  font-size:15px;
+  font-weight:600;
+  letter-spacing:1px;
+  transition:0.3s ease;
+}
+
+.nav-link:hover{
+  color:var(--yellow-orange);
+  transform:scale(1.08);
+}
+
+/* ACTIVE BUTTON */
+
+.active-btn{
+  background:var(--yellow-orange);
+
+  height:75px;
+  min-width:88px;
+
+  padding:0 24px;
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
+  box-shadow:
+  -5px 5px 10px rgba(249,104,0,0.3);
+}
+
+.active-btn .nav-link{
+  color:#000;
+}
+
+.active-btn .nav-link:hover{
+  color:#000;
+}
+
+/* DROPDOWN DOT */
+
+.dropdown-dot{
+  width:20px;
+  height:20px;
+
+  background:var(--blaze-orange);
+
+  border-radius:50%;
+
+  position:relative;
+
+  box-shadow:
+  -3px 3px 8px rgba(255,178,0,0.5);
+
+  transition:0.35s ease;
+}
+
+.dropdown-dot::after{
+  content:"";
+
+  position:absolute;
+  top:50%;
+  left:50%;
+
+  transform:translate(-50%, -30%);
+
+  border-left:5px solid transparent;
+  border-right:5px solid transparent;
+  border-top:8px solid white;
+}
+
+/* DROPDOWN */
+
+.about-dropdown-wrapper,
+.virtual-dropdown-wrapper{
+  position:relative;
+}
+
+.about-dropdown-wrapper summary::-webkit-details-marker,
+.virtual-dropdown-wrapper summary::-webkit-details-marker{
+  display:none;
+}
+
+.about-dropdown-summary,
+.virtual-dropdown-summary{
+  display:flex;
+  align-items:center;
+  gap:12px;
+
+  cursor:pointer;
+  list-style:none;
+}
+
+.about-dropdown-wrapper[open] .dropdown-dot,
+.virtual-dropdown-wrapper[open] .dropdown-dot{
+  transform:rotate(180deg);
+}
+
+/* ACTIVE PAGE */
+
+.about-dropdown-wrapper .nav-link{
+  color:var(--yellow-orange);
+}
+
+/* MENU */
+
+.dropdown-menu{
+  position:fixed;
+
+  top:75px;
+  left:0;
+
+  width:100%;
+
+  background:var(--yellow-orange);
+
+  padding:40px 60px;
+
+  box-shadow:
+  0 10px 30px rgba(0,0,0,0.25);
+
+  z-index:999;
+
+  opacity:0;
+  visibility:hidden;
+
+  transform:translateY(-10px);
+
+  transition:0.35s ease;
+}
+
+.about-dropdown-wrapper[open] .dropdown-menu,
+.virtual-dropdown-wrapper[open] .dropdown-menu{
+  opacity:1;
+  visibility:visible;
+  transform:translateY(0);
+}
+
+/* GRID */
+
+.dropdown-grid{
+  width:100%;
+}
+
+.dropdown-column{
+  display:flex;
+  flex-direction:row;
+  justify-content:space-between;
+  width:100%;
+  gap:40px;
+}
+
+/* LINKS */
+
+.dropdown-link{
+  position:relative;
+
+  padding-bottom:10px;
+
+  width:auto;
+  flex:1;
+  min-width:180px;
+}
+
+.dropdown-link span{
+  font-size:15px;
+  font-weight:500;
+
+  color:white;
+
+  transition:0.35s ease;
+}
+
+.dropdown-link::after{
+  content:"";
+
+  width:100%;
+  height:2px;
+
+  background:white;
+
+  position:absolute;
+  left:0;
+  bottom:0;
+
+  transform:scaleX(1);
+
+  transform-origin:left;
+
+  transition:
+  transform 0.45s ease-in-out,
+  background 0.35s ease;
+}
+
+.dropdown-link:hover::after{
+  background:var(--blaze-orange);
+  transform:scaleX(0.92);
+}
+
+.dropdown-link:hover span{
+  color:var(--blaze-orange);
+}
+
+/* =========================
+   HERO
+========================= */
+
+.hero{
+  width:100%;
+  height:500px;
+
+  margin-top:75px;
+
+  overflow:hidden;
+}
+
+.hero img{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  background:#000; /* optional: avoids empty white gaps */
+}
+
+/* =========================
+   SECTION
+========================= */
+
+.section{
+  padding:80px 70px;
+}
+
+.section-title{
+  font-size:52px;
+  font-weight:800;
+  margin-bottom:70px;
+  color:var(--white);
+}
+
+.orange-title{
+  color:var(--blaze-orange);
+  font-size:22px;
+  font-weight:700;
+  margin-bottom:25px;
+}
+
+.text{
+  font-size:16px;
+  line-height:1.9;
+  color:rgba(255,255,255,0.88);
+  
+  margin-bottom:22px;
+}
+
+.section-line{
+  width:100%;
+  height:1px;
+  background:rgba(249,104,0,0.45);
+  margin:80px 0;
+}
+
+/* =========================
+   TWO COLUMN
+========================= */
+
+.two-column{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:60px;
+  align-items:center;
+}
+
+/* =========================
+   IMAGE CONTAINER
+========================= */
+
+.image-box{
+  height:400px;
+  overflow:hidden;
+}
+
+/* =========================
+   IMAGE
+========================= */
+
+.image-box img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  border:1px solid rgba(255,255,255,0.08);
+}
+
+/* ADD THIS RIGHT BELOW */
+.cinematic-img {
+  width: 100%;
+  height: 350px;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+.horse-box{
+  height: 700px;
+  overflow: visible;
+}
+
+.horse-img{
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  display: block;
+}
+
+/* =========================
+   FEATURE BOX
+========================= */
+
+.feature-box{
+  display:grid;
+  grid-template-columns:320px 1fr;
+  gap:40px;
+  align-items:center;
+}
+
+.feature-text{
+  background:rgba(58,31,99,0.88);
+
+  border-left:4px solid var(--blaze-orange);
+
+  padding:40px 30px;
+}
+
+/* =========================
+   FULL IMAGE
+========================= */
+
+.full-image{
+  width:100%;
+  height:400px;
+  overflow:hidden;
+}
+
+.full-image img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+/* =========================
+   HISTORICAL SPACES
+========================= */
+
+.cards-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:35px;
+}
+
+.card img{
+  height:320px;
+  object-fit:cover;
+
+  border:1px solid rgba(255,255,255,0.08);
+}
+
+.card-title{
+  color:var(--blaze-orange);
+  font-size:18px;
+  font-weight:700;
+  margin:18px 0 12px;
+}
+
+.card-text{
+  font-size:14px;
+  line-height:1.8;
+  color:rgba(255,255,255,0.82);
+}
+
+/* ==================================================
+   TABLET DEVICES
+   768px | 8 columns | 32px margins
+================================================== */
+
+@media(max-width:1024px){
+
+  header{
+    padding:0 32px;
+  }
+
+  .logo-center img{
+    width:160px;
+  }
+
+  .dropdown-menu{
+    padding:35px 32px;
+  }
+
+  .dropdown-column{
+    display:flex;
+    flex-direction:row;
+    justify-content:space-between;
+    width:100%;
+    gap:40px;
+  }
+
+  .dropdown-link{
+    width:auto;
+  }
+
+  /* CONTENT */
+
+  .section{
+    padding:60px 32px;
+  }
+
+  .section-title{
+    font-size:42px;
+  }
+
+  .two-column,
+  .feature-box,
+  .cards-grid{
+    grid-template-columns:1fr;
+  }
+
+  .hero{
+    height:400px;
+  }
+}
+
+/* ==================================================
+   MOBILE DEVICES
+================================================== */
+
+@media(max-width:768px){
+
+  /* HEADER */
+
+  header{
+    height:auto;
+
+    padding:20px 20px 25px;
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+
+    background:
+    radial-gradient(circle at center,
+    var(--dark-purple),
+    #000);
+
+    gap:18px;
+  }
+
+  /* LOGO */
+
+  .logo-center{
+    position:static;
+    transform:none;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    order:1;
+
+    margin-bottom:10px;
+  }
+
+  .logo-center img{
+    width:170px;
+    height:auto;
+    margin-bottom:-25px;
+  }
+
+  /* NAVIGATION */
+
+  .nav-left,
+  .nav-right{
+    width:100%;
+
+    display:grid;
+    grid-template-columns:1fr 1fr;
+
+    gap:22px;
+  }
+
+  .nav-left{
+    order:2;
+    margin-bottom:-5px;
+  }
+
+  .nav-right{
+    order:3;
+  }
+
+  /* BUTTONS */
+
+  .active-btn,
+  .nav-item,
+  .about-dropdown-summary,
+  .virtual-dropdown-summary{
+
+    width:100%;
+    height:35px;
+
+    border-radius:10px;
+
+    background:rgba(255,255,255,0.06);
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    padding:0 18px;
+
+    box-sizing:border-box;
+  }
+
+  .active-btn{
+    background:rgba(255,255,255,0.06);
+  }
+
+  .active-btn .nav-link{
+    color:var(--yellow-orange);
+  }
+
+  /* TEXT */
+
+  .nav-link{
+    font-size:13px;
+    font-weight:700;
+
+    letter-spacing:0.5px;
+  }
+
+  /* DROPDOWN */
+
+  .about-dropdown-summary,
+  .virtual-dropdown-summary{
+    justify-content:center;
+    gap:12px;
+  }
+
+  .dropdown-dot{
+    width:22px;
+    height:22px;
+  }
+
+  .dropdown-dot::after{
+    border-left:5px solid transparent;
+    border-right:5px solid transparent;
+    border-bottom:8px solid white;
+
+    border-top:none;
+
+    transform:translate(-50%, -70%);
+  }
+
+  .dropdown-menu{
+    position:absolute;
+
+    top:75px;
+    left:0;
+
+    width:100%;
+
+    padding:18px;
+
+    border-radius:16px;
+  }
+
+  .dropdown-column{
+    flex-direction:column;
+    gap:14px;
+  }
+
+  .dropdown-link{
+    width:100%;
+    min-width:unset;
+    flex:none;
+    overflow:hidden;
+  }
+
+  /* CONTENT */
+
+  .section{
+    padding:50px 16px;
+  }
+
+  .section-title{
+    font-size:30px;
+    line-height:1.2;
+    margin-bottom:40px;
+  }
+
+  .orange-title{
+    font-size:20px;
+  }
+
+  .text{
+    font-size:14px;
+    line-height:1.8;
+  }
+
+  .two-column,
+  .feature-box,
+  .cards-grid{
+    grid-template-columns:1fr;
+  }
+
+  .feature-box{
+    gap:30px;
+  }
+
+  .hero{
+    height:280px;
+    margin-top:210px;
+  }
+
+  .image-box,
+  .full-image{
+    height:250px;
+  }
+
+
+
+  /* FOOTER */
+
+  footer{
+    padding:40px 16px;
+  }
+
+  footer img{
+    width:180px !important;
+  }
+
+  .footer-container p{
+    font-size:10px;
+  }
+
+  .copyright{
+    font-size:8px;
+  }
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+  background:
+  radial-gradient(circle at center,
+  var(--dark-purple),
+  #000);
+
+  padding:50px 20px;
+
+  text-align:center;
+}
+
+.footer-container{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:10px;
+}
+
+.footer-container p:not(.copyright){
+  font-size:11px;
+  color:#ededed;
+}
+
+.copyright{
+  color:var(--yellow-orange);
+  font-size:8px;
+  font-style:italic;
+}
+
+</style>
+</head>
+
+<body>
+<!-- =====================
+     HEADER
+===================== -->
+
+<header>
+
+  <!-- LEFT NAV -->
+  <div class="nav-left">
+
+    <!-- HOME -->
+    <div class="nav-item">
+      <a href="index.html" class="nav-link">HOME</a>
+    </div>
+
+    <!-- ABOUT -->
+    <details class="about-dropdown-wrapper">
+
+      <summary class="about-dropdown-summary">
+        <span class="nav-link">ABOUT</span>
+        <div class="dropdown-dot"></div>
+      </summary>
+
+      <div class="dropdown-menu about-menu">
+
+        <div class="dropdown-grid">
+
+          <div class="dropdown-column">
+
+            <a href="ABOUT.html#about-dambanang" class="dropdown-link">
+                <span>About the Dambanang Aguinaldo</span>
+            </a>
+
+            <a href="ABOUT.html#history-shrine" class="dropdown-link">
+                <span>History of the Aguinaldo Shrine</span>
+            </a>
+
+<a href="ABOUT.html#historical-spaces" class="dropdown-link">
+  <span>Historical Spaces</span>
+</a>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </details>
+
+  </div>
+
+  <!-- CENTER LOGO -->
+  <div class="logo-center">
+
+    <img
+    src="https://timelessin3d.github.io/Dambanang-Aguinaldo/images/logo.png"
+    alt="Aguinaldo Shrine Logo">
+
+  </div>
+
+  <!-- RIGHT NAV -->
+  <div class="nav-right">
+
+    <!-- VIRTUAL TOUR -->
+    <details class="virtual-dropdown-wrapper">
+
+      <summary class="virtual-dropdown-summary">
+        <span class="nav-link">VIRTUAL TOUR</span>
+        <div class="dropdown-dot"></div>
+      </summary>
+
+      <div class="dropdown-menu virtual-menu">
+
+        <div class="dropdown-grid">
+
+          <div class="dropdown-column">
+
+            <a href="VIRTUAL-EXTERIOR.html" class="dropdown-link">
+              <span>Exterior</span>
+            </a>
+
+            <a href="VIRTUAL.html" class="dropdown-link">
+              <span>Hallway to Balcony</span>
+            </a>
+
+            <a href="VIRTUAL-UNKNOWN.html" class="dropdown-link">
+              <span>Grand Hall to Dining</span>
+            </a>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </details>
+
+    <!-- RESEARCHERS -->
+    <div class="nav-item">
+      <a href="RESEARCHERS.html" class="nav-link">
+        RESEARCHERS
+      </a>
+    </div>
+
+  </div>
+
+</header>
+
+<!-- =========================
+     HERO IMAGE
+========================= -->
+
+<section class="full-image">
+<img src="https://timelessin3d.github.io/Dambanang-Aguinaldo/images/Aduinaldo's_House_Front.jpg" alt="Inang Bayan" class="cinematic-img">
+</section>
+
+<!-- =========================
+     ABOUT SECTION
+========================= -->
+
+<section class="section" id="about-dambanang">
+
+  <h1 class="section-title">
+    ABOUT THE DAMBANANG AGUINALDO
+  </h1>
+
+  <div class="two-column">
+
+    <div class="image-box">
+      <img src="https://timelessin3d.github.io/Dambanang-Aguinaldo/images/house_symbol.webp" alt="Shrine">
+    </div>
+
+    <div>
+
+      <h2 class="orange-title">
+        A Symbol of Philippine Independence
+      </h2>
+
+      <p class="text">
+      The Dambanang Aguinaldo, also known as the Aguinaldo Shrine, is one of the most important 
+      historical landmarks in the Philippines. Located in Kawit, Cavite, it served as the ancestral 
+      residence of General Emilio Aguinaldo, the first President of the Philippine Republic.   </p>
+
+      <p class="text">
+      Originally built as a family home, the mansion gradually became associated with significant events 
+      in Philippine history, particularly during the revolutionary period of the late 19th century. Its 
+      architectural design reflects a blend of traditional Filipino and colonial influences, featuring 
+      spacious halls, decorative balconies, symbolic motifs, and elevated tower structures that distinguished 
+      prominent ancestral houses of the period. </p>
+      
+      <p class="text">     
+      Over time, the residence evolved from a private household into a nationally recognized cultural landmark. 
+      In 1963, Emilio Aguinaldo donated the mansion to the government to help preserve its historical and cultural 
+      significance for future generations. Today, the shrine is maintained by the National Historical Commission of 
+      the Philippines (NHCP) and continues to serve as a museum, educational site, and symbol of Filipino heritage. </p>
+
+  
+    </div>
+
+  </div>
+
+  <div class="section-line"></div>
+
+  <!-- FEATURE BOX -->
+
+  <div class="feature-box">
+
+    <div class="feature-text">
+
+      <h2 class="orange-title">
+        Who is Emilio Aguinaldo?
+      </h2>
+
+      <p class="text">
+        Emilio Aguinaldo was a Filipino revolutionary leader and statesman who played a major role 
+        in the country’s fight for independence. He became the first President of the First Philippine 
+        Republic and led revolutionary movements against Spanish colonial rule. His contributions to 
+        Philippine history continue to shape the nation’s identity and remembrance of the struggle for freedom.
+      </p>
+
+    </div>
+
+<div class="image-box horse-box">
+<img src="https://timelessin3d.github.io/Dambanang-Aguinaldo/images/aguinaldo_horse.webp" 
+     alt="Shrine" 
+     class="horse-img">
+    </div>
+  </div>
+
+</section>
+
+<!-- =========================
+     HISTORY SECTION
+========================= -->
+
+<section class="section" id="history-shrine">
+
+  <h1 class="section-title">
+    HISTORY OF THE AGUINALDO SHRINE
+  </h1>
+  
+  <div class="two-column">
+
+    <div>
+
+      <h2 class="orange-title">
+        The Proclamation of Philippine Independence
+      </h2>
+
+     <p class="text">
+  One of the most historically significant areas of the shrine is the Independence Balcony, 
+  where the Philippine flag was publicly displayed during the declaration of independence on June 12, 1898. 
+  This event marked the formal proclamation of the country’s independence from Spanish colonial rule and became 
+  a defining moment in Philippine history.
+</p>
+
+<p class="text">
+  Although the balcony seen today is widely associated with the historic proclamation of independence, historical 
+  records and NHCP references indicate that the present “Independence Balcony” was added during major renovations 
+  of the mansion between 1919 and the 1920s. The original declaration in 1898 was reportedly made from the central 
+  window of the grand hall rather than the balcony itself. Over time, however, the balcony became an important commemorative 
+  feature of the shrine and is now used during Independence Day ceremonies and national commemorations.
+</p>
+
+<p class="text">
+  Today, the Independence Balcony continues to serve as a site for commemorative ceremonies, historical gatherings, 
+  and Independence Day celebrations. It remains one of the most recognizable features of the Dambanang Aguinaldo, 
+  connecting visitors to the country’s historical memory and national heritage.
+</p>
+
+    </div>
+
+    <div class="image-box">
+      <img src="https://timelessin3d.github.io/Dambanang-Aguinaldo/images/small-window.png" alt="Historical Area">
+    </div>
+
+  </div>
+
+</section>
+
+<!-- =========================
+     FULL IMAGE
+========================= -->
+
+<section class="full-image">
+<img src="https://timelessin3d.github.io/Dambanang-Aguinaldo/images/Inang-bayan.png" alt="Inang Bayan" class="cinematic-img">
+</section>
+
+<!-- =========================
+     CULTURAL SECTION
+========================= -->
+
+<section class="section" id="historical-spaces">
+
+  <h1 class="section-title">
+    HISTORICAL SPACES
+  </h1>
+
+  <p class="text">
+    The Aguinaldo Shrine remains an important cultural landmark that preserves the memory of the Philippine 
+    Revolution and the nation’s early independence movement. Inside the mansion are historically significant 
+    spaces such as the Grand Hall, Veterans Hall, Family Dining Hall, Watch Tower, and Azotea, each reflecting
+    the lifestyle, political history, and architectural character of the Aguinaldo household during the late 
+    colonial period.
+  </p>
+
+</section>
+
+<!-- =========================
+     HISTORICAL SPACES
+========================= -->
+
+<section class="section">
+
+  <h1 class="section-title">
+    HISTORICAL SPACES
+  </h1>
+
+  <div class="cards-grid">
+
+    <div class="card">
+      <img src="https://timelessin3d.github.io/Dambanang-Aguinaldo/images/Independence-Balcony.png" alt="Balcony">
+      <h3 class="card-title">Independence Balcony</h3>
+      <p class="card-text">
+        The balcony where the Philippine Independence was proclaimed.
+      </p>
+    </div>
+
+    <div class="card">
+      <img src="https://timelessin3d.github.io/Dambanang-Aguinaldo/images/Grand%20Hall.JPG" alt="Grand Hall">
+      <h3 class="card-title">Grand Hall</h3>
+      <p class="card-text">
+        A formal gathering place for meetings and social events.
+      </p>
+    </div>
+
+    <div class="card">
+      <img src="https://timelessin3d.github.io/Dambanang-Aguinaldo/images/Family-Formal-Dining.JPG" alt="Dining Hall">
+      <h3 class="card-title">Family Dining Hall</h3>
+      <p class="card-text">
+        One of the preserved interior spaces of the mansion.
+      </p>
+    </div>
+
+    <div class="card">
+      <img src="https://timelessin3d.github.io/Dambanang-Aguinaldo/images/Veterans-Hall.png" alt="Hallway">
+      <h3 class="card-title">Veteran Hall</h3>
+      <p class="card-text">
+        A hallway dedicated to preserving revolutionary memories.
+      </p>
+    </div>
+
+    <div class="card">
+      <img src="https://timelessin3d.github.io/Dambanang-Aguinaldo/images/Tower.png" alt="Tower">
+      <h3 class="card-title">Watch Tower</h3>
+      <p class="card-text">
+        A tower that symbolized vigilance during revolutionary times.
+      </p>
+    </div>
+
+    <div class="card">
+      <img src="https://timelessin3d.github.io/Dambanang-Aguinaldo/images/Azotea.png" alt="Azotea">
+      <h3 class="card-title">Azotea</h3>
+      <p class="card-text">
+        An open balcony space known for ventilation and views.
+      </p>
+    </div>
+
+  </div>
+  </section>
+<!-- =====================
+     FOOTER
+===================== -->
+
+<footer>
+
+  <div class="footer-container">
+
+    <img
+    src="https://timelessin3d.github.io/Dambanang-Aguinaldo/images/logo.png"
+    style="width:250px; height:auto;">
+
+    <p>Interactive Heritage Visualization</p>
+
+    <p>Bachelor of Multimedia Arts Thesis Project</p>
+
+    <p>St. Dominic College of Asia | 2026</p>
+
+    <p class="copyright">
+      © 2026 Dambanang Aguinaldo |
+      Developed with Web Technologies
+      and 3D Visualization Tools
+    </p>
+
+  </div>
+
+</footer>
+
+<script>
+
+const dropdowns = document.querySelectorAll(
+  '.about-dropdown-wrapper, .virtual-dropdown-wrapper'
+);
+
+dropdowns.forEach((dropdown) => {
+
+  dropdown.addEventListener('toggle', () => {
+
+    if (dropdown.open) {
+
+      dropdowns.forEach((otherDropdown) => {
+
+        if (otherDropdown !== dropdown) {
+          otherDropdown.removeAttribute('open');
+        }
+
+      });
+
+    }
+
+  });
+
+});
+
+</script>
+</body>
+</html>
+

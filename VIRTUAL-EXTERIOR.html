@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Virtual Tour | The Dambanang Aguinaldo</title>
+
+<!-- GOOGLE FONT -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+:root{
+  --jaguar:#06030A;
+  --white:#ffffff;
+  --blaze-orange:#f96800;
+  --yellow-orange:#ffb200;
+  --dark-purple:#3a1f63;
+  --meteorite:#412b6b;
+  --butterfly-bush:#5c3e94;
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  background:var(--jaguar);
+  color:var(--white);
+  font-family:'Montserrat', sans-serif;
+  overflow-x:hidden;
+}
+
+a{
+  text-decoration:none;
+  color:var(--white);
+}
+
+img{
+  width:100%;
+  display:block;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+header{
+  width:100%;
+  height:75px;
+
+  background:
+  radial-gradient(circle at 50% 50%,
+  var(--dark-purple),
+  #000000);
+
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+
+  padding:0 40px;
+
+  position:fixed;
+  top:0;
+  left:0;
+  z-index:1000;
+}
+
+.nav-left,
+.nav-right{
+  display:flex;
+  align-items:center;
+  gap:20px;
+}
+
+.nav-item{
+  display:flex;
+  align-items:center;
+}
+
+.logo-center{
+  position:absolute;
+  left:50%;
+  transform:translateX(-50%);
+  display:flex;
+  align-items:center;
+}
+
+.logo-center img{
+  width:200px;
+  height:auto;
+}
+
+.nav-link{
+  font-size:15px;
+  font-weight:600;
+  letter-spacing:1px;
+  transition:0.3s ease;
+}
+
+.nav-link:hover{
+  color:var(--yellow-orange);
+  transform:scale(1.05);
+}
+
+.active-btn{
+  background:transparent;
+  height:75px;
+  min-width:88px;
+
+  padding:0 24px;
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+.active-btn .nav-link{
+  color:var(--yellow-orange);
+}
+
+.dropdown-dot{
+  width:20px;
+  height:20px;
+
+  background:var(--blaze-orange);
+
+  border-radius:50%;
+
+  position:relative;
+
+  box-shadow:
+  -3px 3px 8px rgba(255,178,0,0.5);
+
+  transition:0.35s ease;
+}
+
+.dropdown-dot::after{
+  content:"";
+  position:absolute;
+
+  top:50%;
+  left:50%;
+
+  transform:translate(-50%, -70%);
+
+  border-left:5px solid transparent;
+  border-right:5px solid transparent;
+  border-bottom:8px solid white;
+}
+
+.about-dropdown-wrapper[open] .dropdown-dot,
+.virtual-dropdown-wrapper[open] .dropdown-dot{
+  transform:rotate(180deg);
+}
+
+.about-dropdown-wrapper,
+.virtual-dropdown-wrapper{
+  position:relative;
+}
+
+.about-dropdown-wrapper summary::-webkit-details-marker,
+.virtual-dropdown-wrapper summary::-webkit-details-marker{
+  display:none;
+}
+
+.about-dropdown-summary,
+.virtual-dropdown-summary{
+  display:flex;
+  align-items:center;
+  gap:12px;
+
+  cursor:pointer;
+  list-style:none;
+}
+
+.dropdown-menu{
+  position:fixed;
+
+  top:75px;
+  left:0;
+
+  width:100%;
+
+  background:var(--yellow-orange);
+
+  padding:40px 138px;
+
+  box-shadow:
+  0 10px 30px rgba(0,0,0,0.25);
+
+  z-index:999;
+
+  opacity:0;
+  visibility:hidden;
+
+  transform:translateY(-10px);
+
+  transition:0.35s ease;
+}
+
+.about-dropdown-wrapper[open] .dropdown-menu,
+.virtual-dropdown-wrapper[open] .dropdown-menu{
+  opacity:1;
+  visibility:visible;
+  transform:translateY(0);
+}
+
+.dropdown-grid{
+  width:100%;
+}
+
+.dropdown-column{
+  display:flex;
+  justify-content:space-between;
+  width:100%;
+}
+
+.dropdown-link{
+  position:relative;
+  padding-bottom:10px;
+  width:280px;
+}
+
+.dropdown-link span{
+  font-size:15px;
+  font-weight:500;
+  color:white;
+  transition:0.35s ease;
+}
+
+.dropdown-link::after{
+  content:"";
+  width:100%;
+  height:2px;
+
+  background:white;
+
+  position:absolute;
+  left:0;
+  bottom:0;
+
+  transform:scaleX(1);
+  transform-origin:left;
+
+  transition:
+  transform 0.45s ease-in-out,
+  background 0.35s ease;
+}
+
+.dropdown-link:hover::after{
+  background:var(--blaze-orange);
+  transform:scaleX(0.92);
+}
+
+.dropdown-link:hover span{
+  color:var(--blaze-orange);
+}
+
+/* =========================
+   BREADCRUMB
+========================= */
+
+.breadcrumb-section{
+  padding:170px 70px 30px;
+  background:#000;
+}
+
+.breadcrumb{
+  display:flex;
+  align-items:center;
+  gap:15px;
+
+  margin-bottom:25px;
+}
+
+.breadcrumb a{
+  font-size:13px;
+  font-weight:600;
+}
+
+.breadcrumb span{
+  color:var(--blaze-orange);
+}
+
+.breadcrumb p{
+  font-size:18px;
+}
+
+.section-line{
+  width:100%;
+  height:2px;
+
+  background:rgba(249,104,0,0.5);
+}
+
+.viewer-spacing{
+  padding:30px 70px 80px;
+}
+
+/* =========================
+   SKETCHFAB
+========================= */
+
+.viewer-section{
+  width:100%;
+}
+
+.sketchfab-container{
+  position:relative;
+
+  width:100%;
+  height:calc(100vh - 75px);
+
+  overflow:hidden;
+}
+
+.sketchfab-container iframe{
+  width:100%;
+  height:100%;
+  border:none;
+  display:block;
+}
+
+/* =========================
+   INFO PANEL
+========================= */
+
+#panel-toggle{
+  display:none;
+}
+
+.info-btn{
+  position:fixed;
+
+  bottom:90px;
+  right:20px;
+
+  width:55px;
+  height:55px;
+
+  border-radius:50%;
+
+  background:rgba(249,104,0,0.95);
+
+  color:white;
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
+  font-size:28px;
+  font-weight:700;
+
+  cursor:pointer;
+
+  z-index:3001;
+
+  transition:0.35s ease;
+
+  box-shadow:
+  0 0 18px rgba(249,104,0,0.45);
+}
+
+.info-btn:hover{
+  transform:scale(1.08);
+  background:var(--yellow-orange);
+}
+
+#panel-toggle:checked + .info-btn{
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+
+  transform:scale(0.8);
+}
+
+.info-panel{
+  position:fixed;
+
+  top:75px;
+  right:-420px;
+
+  width:360px;
+  height:calc(100vh - 75px);
+
+  padding:35px 30px;
+
+  background:rgba(25,10,45,0.58);
+
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+
+  border-top:4px solid var(--blaze-orange);
+
+  color:white;
+
+  z-index:3000;
+
+  overflow-y:auto;
+
+  transition:0.5s ease;
+}
+
+#panel-toggle:checked ~ .info-panel{
+  right:0;
+}
+
+.close-btn{
+  position:absolute;
+
+  top:10px;
+  right:18px;
+
+  font-size:40px;
+
+  color:var(--blaze-orange);
+
+  cursor:pointer;
+}
+
+.info-panel h2{
+  text-align:center;
+
+  font-size:24px;
+  line-height:1.4;
+
+  margin-top:18px;
+  margin-bottom:18px;
+}
+
+.panel-line{
+  width:70%;
+  height:2px;
+
+  background:var(--blaze-orange);
+
+  margin:0 auto 25px;
+}
+
+.info-panel p{
+  font-size:15px;
+  line-height:1.9;
+
+  text-align:justify;
+
+  margin-bottom:18px;
+}
+
+/* =========================
+   MUSIC BUTTON
+========================= */
+
+#music-toggle{
+  position:fixed;
+
+  bottom:20px;
+  right:20px;
+
+  width:55px;
+  height:55px;
+
+  border:none;
+  border-radius:50%;
+
+  background:rgba(0,0,0,0.75);
+  color:white;
+
+  font-size:24px;
+  cursor:pointer;
+
+  z-index:3000;
+
+  transition:0.3s ease;
+}
+
+#music-toggle:hover{
+  transform:scale(1.08);
+  background:var(--blaze-orange);
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+  background:
+  radial-gradient(circle at center,
+  var(--dark-purple),
+  #000);
+
+  padding:50px 20px;
+
+  border-top:1px solid rgba(255,255,255,0.08);
+
+  text-align:center;
+}
+
+.footer-container{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+}
+
+.footer-container p{
+  color:#ededed;
+  font-size:11px;
+  line-height:1.8;
+  margin:2px 0;
+}
+
+.footer-container .copyright{
+  color:var(--yellow-orange);
+  font-weight:600;
+  font-size:8.6px;
+  font-style:italic;
+  margin-top:10px;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:1024px){
+
+  header{
+    padding:0 32px;
+  }
+
+  .logo-center img{
+    width:160px;
+  }
+
+  .dropdown-menu{
+    padding:35px 32px;
+  }
+
+  .dropdown-column{
+    gap:25px;
+    flex-wrap:wrap;
+  }
+
+  .dropdown-link{
+    width:auto;
+  }
+
+}
+
+@media(max-width:768px){
+
+  header{
+    height:auto;
+
+    padding:20px 20px 25px;
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+
+    gap:18px;
+  }
+
+  .logo-center{
+    position:static;
+    transform:none;
+
+    order:1;
+
+    margin-bottom:10px;
+  }
+
+  .logo-center img{
+    width:170px;
+    margin-bottom:-25px;
+  }
+
+  .nav-left,
+  .nav-right{
+    width:100%;
+
+    display:grid;
+    grid-template-columns:1fr 1fr;
+
+    gap:22px;
+  }
+
+  .nav-left{
+    order:2;
+    margin-bottom:-5px;
+  }
+
+  .nav-right{
+    order:3;
+  }
+
+  .active-btn,
+  .nav-item,
+  .about-dropdown-summary,
+  .virtual-dropdown-summary{
+
+    width:100%;
+    height:35px;
+
+    border-radius:10px;
+
+    background:rgba(255,255,255,0.06);
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    padding:0 18px;
+  }
+
+  .virtual-dropdown-summary .active-btn{
+    background:transparent;
+    padding:0;
+    height:auto;
+    min-width:auto;
+  }
+
+  .nav-link{
+    font-size:17px;
+    font-weight:700;
+    letter-spacing:0.5px;
+  }
+
+  .dropdown-menu{
+    position:absolute;
+
+    top:75px;
+    left:0;
+
+    width:100%;
+
+    padding:18px;
+
+    border-radius:16px;
+  }
+
+  .dropdown-column{
+    flex-direction:column;
+    gap:14px;
+  }
+
+  .dropdown-link{
+    width:100%;
+  }
+
+  .breadcrumb-section{
+    padding:260px 16px 25px;
+  }
+
+  .breadcrumb{
+    gap:10px;
+    flex-wrap:wrap;
+  }
+
+  .breadcrumb a,
+  .breadcrumb p{
+    font-size:14px;
+  }
+
+  .viewer-spacing{
+    padding:20px 16px 60px;
+  }
+
+  .sketchfab-container{
+    height:70vh;
+  }
+
+  .info-panel{
+    width:100%;
+    right:-100%;
+  }
+
+  footer{
+    padding:40px 16px;
+  }
+
+  footer img{
+    width:180px !important;
+  }
+
+  .footer-container p{
+    font-size:10px;
+  }
+
+  .copyright{
+    font-size:8px;
+  }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- BACKGROUND MUSIC -->
+<audio id="bg-music" autoplay loop>
+  <source src="https://timelessin3d.github.io/Dambanang-Aguinaldo/bgmusic/gitara_ver.mp3" type="audio/mpeg">
+</audio>
+
+<!-- MUSIC BUTTON -->
+<button id="music-toggle">🔊</button>
+
+<!-- INFO PANEL -->
+<input type="checkbox" id="panel-toggle">
+
+<label for="panel-toggle" class="info-btn">
+  i
+</label>
+
+<div class="info-panel">
+
+  <label for="panel-toggle" class="close-btn">
+    &times;
+  </label>
+
+  <h2>
+    Exterior of the Aguinaldo Shrine
+  </h2>
+
+  <div class="panel-line"></div>
+
+  <p>
+    The exterior of the Dambanang Aguinaldo reflects a blend of 
+    traditional Filipino and colonial architectural styles commonly 
+    seen in prominent ancestral homes during the late Spanish colonial period.
+  </p>
+
+  <p>
+    Its decorative balconies, carved wooden details, watch tower, and symbolic 
+    ornaments such as the carabao relief, stars, crossed swords, and Philippine 
+    flag-inspired motifs represent themes of nationalism, revolution, and 
+    Filipino identity embedded within the mansion’s design.
+  </p>
+
+</div>
+
+<header>
+
+  <div class="nav-left">
+
+    <div class="nav-item">
+      <a href="index.html" class="nav-link">
+        HOME
+      </a>
+    </div>
+
+    <details class="about-dropdown-wrapper">
+
+      <summary class="about-dropdown-summary">
+
+        <span class="nav-link">
+          ABOUT
+        </span>
+
+        <div class="dropdown-dot"></div>
+
+      </summary>
+
+      <div class="dropdown-menu">
+
+        <div class="dropdown-grid">
+
+          <div class="dropdown-column">
+
+            <a href="ABOUT.html#about-dambanang" class="dropdown-link">
+              <span>About the Dambanang Aguinaldo</span>
+            </a>
+
+            <a href="ABOUT.html#history-shrine" class="dropdown-link">
+              <span>History of the Aguinaldo Shrine</span>
+            </a>
+
+            <a href="ABOUT.html#historical-spaces" class="dropdown-link">
+              <span>Historical Spaces</span>
+            </a>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </details>
+
+  </div>
+
+  <div class="logo-center">
+
+    <img
+    src="https://timelessin3d.github.io/Dambanang-Aguinaldo/images/logo.png"
+    alt="Aguinaldo Shrine Logo">
+
+  </div>
+
+  <div class="nav-right">
+
+    <details class="virtual-dropdown-wrapper">
+
+      <summary class="virtual-dropdown-summary">
+
+        <div class="active-btn">
+
+          <span class="nav-link">
+            VIRTUAL TOUR
+          </span>
+
+        </div>
+
+        <div class="dropdown-dot"></div>
+
+      </summary>
+
+      <div class="dropdown-menu">
+
+        <div class="dropdown-grid">
+
+          <div class="dropdown-column">
+
+            <a href="VIRTUAL-EXTERIOR.html" class="dropdown-link">
+              <span>Exterior</span>
+            </a>
+
+            <a href="VIRTUAL.html" class="dropdown-link">
+              <span>Hallway to Balcony</span>
+            </a>
+
+            <a href="VIRTUAL-UNKNOWN.html" class="dropdown-link">
+              <span>Grand Hall to Dining</span>
+            </a>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </details>
+
+    <div class="nav-item">
+
+      <a href="RESEARCHERS.html" class="nav-link">
+        RESEARCHERS
+      </a>
+
+    </div>
+
+  </div>
+
+</header>
+
+<section class="breadcrumb-section">
+
+  <div class="breadcrumb">
+
+    <a href="#">
+      VIRTUAL TOUR
+    </a>
+
+    <span>></span>
+
+    <p>Exterior</p>
+
+  </div>
+
+  <div class="section-line"></div>
+
+</section>
+  <!-- SKETCHFAB -->
+<section class="viewer-section">
+
+  <div class="sketchfab-container">
+
+
+<iframe
+title="Grandhall"
+width="100%"
+height="100%"
+frameborder="0"
+allowfullscreen
+mozallowfullscreen="true"
+webkitallowfullscreen="true"
+allow="autoplay; fullscreen; xr-spatial-tracking"
+xr-spatial-tracking
+execution-while-out-of-viewport
+execution-while-not-rendered
+web-share
+src="https://sketchfab.com/models/42e003ba7f9e4634b5f5057c43c553ff/embed">
+</iframe>
+
+
+  </div>
+
+</section>
+</section>
+
+<div class="viewer-spacing">
+  <div class="section-line"></div>
+</div>
+
+<footer>
+
+  <div class="footer-container">
+
+    <img
+    src="https://timelessin3d.github.io/Dambanang-Aguinaldo/images/logo.png"
+    alt="The Dambanang Aguinaldo"
+    style="width:250px; height:auto;">
+
+    <p>Interactive Heritage Visualization</p>
+
+    <p>Bachelor of Multimedia Arts Thesis Project</p>
+
+    <p>St. Dominic College of Asia | 2026</p>
+
+    <p class="copyright">
+      © 2026 Dambanang Aguinaldo | Developed with Web Technologies and 3D Visualization Tools
+    </p>
+
+  </div>
+
+</footer>
+
+<script>
+
+/* =========================
+   CLOSE OTHER DROPDOWNS
+========================= */
+
+const dropdowns = document.querySelectorAll(
+  '.about-dropdown-wrapper, .virtual-dropdown-wrapper'
+);
+
+dropdowns.forEach((dropdown) => {
+
+  dropdown.addEventListener('toggle', () => {
+
+    if (dropdown.open) {
+
+      dropdowns.forEach((otherDropdown) => {
+
+        if (otherDropdown !== dropdown) {
+          otherDropdown.removeAttribute('open');
+        }
+
+      });
+
+    }
+
+  });
+
+});
+
+/* =========================
+   MUSIC TOGGLE
+========================= */
+
+const music = document.getElementById("bg-music");
+const musicToggle = document.getElementById("music-toggle");
+
+music.volume = 0.4;
+
+musicToggle.addEventListener("click", () => {
+
+  if(music.muted){
+
+    music.muted = false;
+    musicToggle.textContent = "🔊";
+
+  } else {
+
+    music.muted = true;
+    musicToggle.textContent = "🔇";
+
+  }
+
+});
+
+</script>
+
+</body>
+</html>

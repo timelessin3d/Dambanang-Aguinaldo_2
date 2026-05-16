@@ -1,0 +1,1421 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>The Dambanang Aguinaldo</title>
+
+<!-- GOOGLE FONT -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+/* =========================
+   ROOT COLORS
+========================= */
+
+:root{
+  --jaguar:#06030A;
+  --white:#ffffff;
+  --blaze-orange:#f96800;
+  --yellow-orange:#ffb200;
+  --dark-purple:#3a1f63;
+  --meteorite:#412b6b;
+  --butterfly-bush:#5c3e94;
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  background:var(--jaguar);
+  color:var(--white);
+  font-family:'Montserrat', sans-serif;
+  overflow-x:hidden;
+}
+
+a{
+  text-decoration:none;
+  color:var(--white);
+}
+
+img{
+  width:100%;
+  display:block;
+}
+
+/* =========================
+   HEADER CSS
+========================= */
+
+header{
+  width:100%;
+  height:75px;
+
+  background:
+  radial-gradient(circle at 50% 50%,
+  var(--dark-purple),
+  #000000);
+
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+
+  padding:0 40px;
+
+  position:fixed;
+  top:0;
+  left:0;
+  z-index:1000;
+}
+
+
+/* NAV */
+
+.nav-left,
+.nav-right{
+  display:flex;
+  align-items:center;
+  gap:20px;
+}
+
+.nav-item{
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+
+/* CENTER LOGO */
+.logo-center{
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+}
+
+/* LOGO SIZE */
+.logo-center img{
+  width: 200px; 
+  height: auto;
+}
+/* LINKS */
+
+.nav-link{
+  font-size:15px;
+  font-weight:600;
+  letter-spacing:1px;
+
+  transition:0.3s ease;
+}
+
+.nav-link:hover{
+  color:var(--yellow-orange);
+  transform:scale(1.08);
+}
+
+/* ACTIVE BUTTON */
+
+.active-btn{
+
+  height:75px;
+  min-width:88px;
+
+  padding:0 24px;
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
+  margin-top:0px;
+
+  box-shadow:none;
+}
+.active-btn .nav-link{
+  color: var(--yellow-orange);
+}
+
+.active-btn .nav-link:hover{
+  color:var(--yellow-orange);
+}
+
+/* =========================
+   DROPDOWN DOT
+========================= */
+
+.dropdown-dot {
+  width: 20px;
+  height: 20px;
+
+  background: var(--blaze-orange);
+
+  border-radius: 50%;
+
+  position: relative;
+
+  box-shadow:
+  -3px 3px 8px rgba(255,178,0,0.5);
+
+  transition: 0.35s ease;
+}
+
+.dropdown-dot::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -70%);
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 8px solid white;
+}
+
+/* Rotate arrow when dropdown open */
+.about-dropdown-wrapper[open] .dropdown-dot,
+.virtual-dropdown-wrapper[open] .dropdown-dot {
+  transform: rotate(180deg);
+}
+
+
+/* =========================
+   LOGO
+========================= */
+
+.logo h1{
+  position:relative;
+
+  font-family:serif;
+  font-size:32px;
+  line-height:1.1;
+
+  text-align:center;
+  font-weight:400;
+
+  text-shadow:
+  -15px 15px 100px rgba(249,104,0,1);
+}
+
+.small-the{
+  position:absolute;
+
+  top:5px;
+  left:-35px;
+
+  font-size:16px;
+}
+
+.aguinaldo{
+  display:block;
+  margin-left:-15px;
+}
+
+/* =========================
+   ABOUT DROPDOWN
+========================= */
+
+.about-dropdown-wrapper{
+  position:relative;
+}
+
+.about-dropdown-wrapper summary::-webkit-details-marker{
+  display:none;
+}
+
+.about-dropdown-summary{
+  display:flex;
+  align-items:center;
+  gap:12px;
+
+  cursor:pointer;
+  list-style:none;
+}
+
+
+/* =========================
+   VIRTUAL DROPDOWN
+========================= */
+
+.virtual-dropdown-wrapper{
+  position:relative;
+}
+
+.virtual-dropdown-wrapper summary::-webkit-details-marker{
+  display:none;
+}
+
+.virtual-dropdown-summary{
+  display:flex;
+  align-items:center;
+  gap:12px;
+
+  cursor:pointer;
+  list-style:none;
+}
+
+
+/* =========================
+   DROPDOWN MENU
+========================= */
+
+.dropdown-menu{
+  position:fixed;
+
+  top:75px;
+  left:0;
+
+  width:100%;
+
+  background:var(--yellow-orange);
+
+  padding:40px 138px;
+
+  box-shadow:
+  0 10px 30px rgba(0,0,0,0.25);
+
+  z-index:999;
+
+  opacity:0;
+  visibility:hidden;
+
+  transform:translateY(-10px);
+
+  transition:0.35s ease;
+}
+
+
+/* SHOW MENU */
+
+.about-dropdown-wrapper[open] .dropdown-menu,
+.virtual-dropdown-wrapper[open] .dropdown-menu{
+  opacity:1;
+  visibility:visible;
+  transform:translateY(0);
+}
+
+/* =========================
+   GRID
+========================= */
+
+.dropdown-grid{
+  width:100%;
+}
+
+.dropdown-column{
+  display:flex;
+  justify-content:space-between;
+
+  width:100%;
+}
+
+/* =========================
+   DROPDOWN LINKS
+========================= */
+.dropdown-link{
+  position:relative;
+
+  padding-bottom:10px;
+
+  margin-bottom:0;
+
+  width:280px;
+}
+
+.dropdown-link span{
+  font-size:15px;
+  font-weight:500;
+
+  color:white;
+
+  transition:0.35s ease;
+}
+
+.dropdown-link::after{
+  content:"";
+
+  width:100%;
+  height:2px;
+
+  background:white;
+
+  position:absolute;
+  left:0;
+  bottom:0;
+
+  transform:scaleX(1);
+
+  transform-origin:left;
+
+  transition:
+  transform 0.45s ease-in-out,
+  background 0.35s ease;
+}
+
+.dropdown-link:hover::after{
+  background:var(--blaze-orange);
+  transform:scaleX(0.92);
+}
+
+.dropdown-link:hover span{
+  color:var(--blaze-orange);
+}
+
+/* =========================
+   HERO SECTION
+========================= */
+
+.hero{
+  width:100%;
+  min-height:100vh;
+
+  background:
+  linear-gradient(
+    rgba(0,0,0,0.55),
+    rgba(0,0,0,0.55)
+  ),
+  url("https://timelessin3d.github.io/Dambanang-Aguinaldo/images/Aduinaldo's_House_Front.jpg");
+
+  background-position:center;
+  background-size:cover;
+  background-repeat:no-repeat;
+
+  position:relative;
+  overflow:hidden;
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+
+  padding-top:75px;
+}
+
+/* HERO CONTENT */
+
+.hero-content{
+  z-index:10;
+}
+
+.hero h2{
+  font-size:70px;
+  font-weight:800;
+  line-height:1.05;
+}
+
+.hero p{
+font-size:16px;
+line-height:1.7;
+max-width:700px;
+margin:auto;
+}
+
+.hero-btn{
+  display:inline-block;
+
+  margin-top:35px;
+
+  padding:14px 42px;
+
+  background:var(--blaze-orange);
+
+  border-radius:40px;
+
+  font-weight:700;
+  font-size:14px;
+
+  transition:0.3s ease;
+}
+
+.hero-btn:hover{
+  transform:scale(1.08);
+}
+
+
+/* =========================
+   PREVIEW SECTION
+========================= */
+
+.preview-section{
+  background:#000;
+  padding:80px 138px;
+}
+
+.section-line{
+  width:100%;
+  height:2px;
+
+  background:rgba(249,104,0,0.5);
+
+  margin-bottom:60px;
+}
+
+.preview-container{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  gap:80px;
+
+  flex-wrap:wrap;
+}
+
+.preview-text,
+.preview-image{
+  flex:1;
+  min-width:320px;
+}
+
+.preview-image{
+  display:flex;
+  justify-content:flex-end;
+  align-items:center;
+}
+
+.preview-image img{
+  width:100%;
+  max-width:650px;
+  height:auto;
+}
+
+.preview-text h2{
+  font-size:58px;
+  font-weight:800;
+  margin-bottom:40px;
+
+  padding-left:0px;
+}
+
+.preview-text h4{
+  color:var(--blaze-orange);
+  margin-bottom:30px;
+  padding-left:38px;
+
+}
+
+.preview-text p{
+  font-size:16px;
+  color:#d8d8d8;
+  line-height:1.8;
+  margin-bottom:20px;
+  padding-left:38px;
+
+}
+
+
+.preview-btn{
+  transition:0.3s ease;
+
+  display:inline-block;
+
+  margin-top:30px;
+  margin-left:38px;
+  background:var(--blaze-orange);
+
+  padding:14px 70px;
+
+  border-radius:40px;
+
+  font-size:14px;
+  font-weight:700;
+}
+
+.preview-btn:hover{
+  transform:scale(1.08);
+}
+
+
+/* =========================
+   INFO SECTION
+========================= */
+
+.info-section{
+  background:#000;
+  padding:70px 138px 120px 138px;
+  justify-content: flex-start;
+}
+
+.info-container{
+  display:flex;
+  justify-content:space-between;
+  gap:80px;
+
+  flex-wrap:wrap;
+}
+
+.historical-box,
+.visit-box{
+  flex:1;
+  min-width:320px;
+}
+
+.historical-box h2,
+.visit-box h2{
+  font-size:48px;
+  margin-bottom:15px;
+  margin-right: 138px;
+}
+
+
+.historical-box h4,
+.visit-box h4{
+  color:var(--blaze-orange);
+  margin-bottom:35px;
+  padding-left:38px;
+
+}
+
+
+
+.historical-box p{
+  font-size: 16px;
+  color:var(--white);
+  line-height:1.9;
+  margin-bottom:25px;
+
+  padding-left: 38px;
+  padding-right: 0px;
+}
+
+.visit-line{
+  width:100%;
+  height:2px;
+
+  background:rgba(249,104,0,0.5);
+
+  margin-bottom:35px;
+}
+
+.visit-item{
+  font-size: 16px;
+  display:flex;
+  gap:18px;
+
+  margin-bottom:30px;
+}
+
+.visit-item span{
+  color:var(--blaze-orange);
+}
+
+.visit-item h5{
+  color:var(--blaze-orange);
+  margin-bottom:8px;
+}
+
+.visit-item p{
+  color:#d8d8d8;
+  line-height:1.7;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+  background:
+  radial-gradient(circle at center,
+  var(--dark-purple),
+  #000);
+
+  padding:50px 20px;
+
+  border-top:1px solid rgba(255,255,255,0.08);
+
+  text-align:center; 
+}
+
+/* stack everything */
+.footer-container{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+}
+
+/* logo */
+.footer-logo h2{
+  font-family:serif;
+  font-size:25px;
+  line-height:1.1;
+  text-shadow:-10px 10px 60px rgba(249,104,0,0.7);
+}
+
+
+.footer-center p,
+.footer-right p{
+  color:#ededed;
+  font-size:11px;
+  line-height:1.8;
+  margin:2px 0;
+}
+
+
+.footer-right{
+  text-align:center;
+}
+
+.copyright{
+  color:var(--yellow-orange);
+  font-weight:600;
+  font-size:8.6px;
+  font-style:italic;
+  margin-top:10px;
+}
+
+/* =========================
+   MUSIC BUTTON
+========================= */
+
+#music-toggle{
+  position:fixed;
+
+  bottom:20px;
+  right:20px;
+
+  width:55px;
+  height:55px;
+
+  border:none;
+  border-radius:50%;
+
+  background:rgba(0,0,0,0.75);
+  color:white;
+
+  font-size:24px;
+  cursor:pointer;
+
+  z-index:3000;
+
+  transition:0.3s ease;
+}
+
+#music-toggle:hover{
+  transform:scale(1.08);
+  background:var(--blaze-orange);
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+/* ==================================================
+   TABLET DEVICES
+   768px | 8 columns | 32px margins
+================================================== */
+
+@media(max-width:1024px){
+
+  /* GLOBAL SECTION SPACING */
+
+  .preview-section,
+  .info-section{
+    padding-left:32px;
+    padding-right:32px;
+  }
+
+  header{
+    padding:0 32px;
+  }
+
+  /* LOGO */
+
+  .logo-center img{
+    width:160px;
+  }
+
+  /* HERO */
+
+  .hero h2{
+    font-size:52px;
+  }
+
+  .hero p{
+    max-width:540px;
+    font-size:15px;
+  }
+
+  /* PREVIEW + INFO */
+
+  .preview-container,
+  .info-container{
+    flex-direction:column;
+    gap:70px;
+  }
+
+  .preview-text,
+  .historical-box,
+  .visit-box{
+    width:100%;
+  }
+
+  .preview-text h2,
+  .historical-box h2,
+  .visit-box h2{
+    font-size:42px;
+  }
+
+  /* REMOVE EXTRA PADDING */
+
+  .preview-text h4,
+  .preview-text p,
+  .historical-box h4,
+  .historical-box p{
+    padding-left:0;
+    margin-right:0;
+  }
+
+  /* DROPDOWN */
+
+  .dropdown-menu{
+    padding:35px 32px;
+  }
+
+  .dropdown-column{
+    gap:25px;
+    flex-wrap:wrap;
+  }
+
+  .dropdown-link{
+    width:auto;
+  }
+  
+}
+
+
+
+/* ==================================================
+   MOBILE DEVICES
+================================================== */
+
+@media(max-width:768px){
+
+  /* =========================
+     HEADER
+  ========================= */
+
+  header{
+    height:auto;
+
+    padding:20px 20px 25px;
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+
+    background:
+    radial-gradient(circle at center,
+    var(--dark-purple),
+    #000);
+
+    gap:18px;
+  }
+
+  /* =========================
+     LOGO
+  ========================= */
+
+  .logo-center{
+    order:1;
+
+    position:static;
+    transform:none;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    margin-bottom:10px;
+  }
+
+  .logo-center img{
+    width:170px;
+    height:auto;
+    margin-bottom:-25px;
+  }
+
+  /* =========================
+     MOBILE NAV LAYOUT
+  ========================= */
+
+  .nav-left,
+  .nav-right{
+    width:100%;
+
+    display:grid;
+    grid-template-columns:1fr 1fr;
+
+    gap:22px;
+  }
+
+  .nav-left{
+    order:2;
+  }
+
+  .nav-right{
+    order:3;
+  }
+
+  /* =========================
+     BUTTON STYLE
+  ========================= */
+
+  .active-btn,
+  .nav-item,
+  .about-dropdown-summary,
+  .virtual-dropdown-summary{
+
+    width:100%;
+    height:35px;
+
+    border-radius:10px;
+
+    background:rgba(255,255,255,0.06);
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    padding:0 18px;
+
+    box-sizing:border-box;
+  }
+
+  /* =========================
+     TEXT
+  ========================= */
+
+  .nav-link{
+    font-size:13px;
+    font-weight:700;
+
+    letter-spacing:0.5px;
+  }
+
+  /* =========================
+     DROPDOWN SUMMARY
+  ========================= */
+
+  .about-dropdown-summary,
+  .virtual-dropdown-summary{
+    justify-content:center;
+    gap:12px;
+  }
+
+  /* =========================
+     DROPDOWN DOT
+  ========================= */
+
+  .dropdown-dot{
+    width:22px;
+    height:22px;
+  }
+
+  .dropdown-dot::after{
+    border-left:5px solid transparent;
+    border-right:5px solid transparent;
+    border-bottom:8px solid white;
+  }
+
+  /* =========================
+     DROPDOWN MENU
+  ========================= */
+
+  .dropdown-menu{
+    position:absolute;
+
+    top:100px;
+    left:0;
+
+    width:100%;
+
+    padding:18px;
+
+    border-radius:16px;
+  }
+
+  .dropdown-column{
+    flex-direction:column;
+    gap:14px;
+  }
+
+  .dropdown-link{
+    width:100%;
+  }
+
+  /* =========================
+     HERO SPACING
+  ========================= */
+
+  .hero{
+    padding-top:260px;
+    min-height:100vh;
+  }
+
+  .hero h2{
+    font-size:42px;
+  }
+
+  .hero p{
+    font-size:14px;
+    padding:0 10px;
+  }
+
+
+  /* =========================
+     SECTIONS
+  ========================= */
+
+  .preview-section,
+  .info-section{
+    padding-left:16px;
+    padding-right:16px;
+  }
+
+  .preview-container,
+  .info-container{
+    flex-direction:column;
+    gap:50px;
+  }
+
+  .preview-text,
+  .historical-box,
+  .visit-box{
+    width:100%;
+  }
+
+  .preview-image{
+    justify-content:center;
+  }
+
+  .preview-image img{
+    max-width:100%;
+  }
+
+  .preview-text h2,
+  .historical-box h2,
+  .visit-box h2{
+    font-size:30px;
+  }
+
+  .preview-text h4,
+  .historical-box h4,
+  .visit-box h4{
+    font-size:16px;
+    padding-left:0;
+  }
+
+  .preview-text p,
+  .historical-box p,
+  .visit-item p{
+    font-size:14px;
+    line-height:1.7;
+    padding-left:0;
+  }
+
+  .visit-item{
+    gap:12px;
+  }
+
+  .section-line{
+    margin-bottom:40px;
+  }
+
+  /* =========================
+     FOOTER
+  ========================= */
+
+  footer{
+    padding:40px 16px;
+  }
+
+  footer img{
+    width:180px !important;
+  }
+
+  .footer-container p{
+    font-size:10px;
+  }
+
+  .copyright{
+    font-size:8px;
+  }
+
+}
+
+</style>
+</head>
+
+<body>
+<!-- ===============================================================================================================================================================================================
+    										BACKGROUND MUSIC PILIPINAS KONG MAHAL 
+================================================================================================================================================================================================ -->
+<audio id="bg-music" autoplay loop>
+  <source src="https://timelessin3d.github.io/Dambanang-Aguinaldo/bgmusic/Pilipinas_Kong_Mahal.mp3" type="audio/mpeg">
+</audio>
+
+<!-- SOUND BUTTON -->
+<button id="music-toggle">🔊</button>
+
+<!-- ===================================================
+     HEADER HYPERLINKS
+========================================================== -->
+
+<header>
+
+  <!-- LEFT NAV -->
+
+  <div class="nav-left">
+
+    <!----------------------------------------------- HOME PAGE ------------------------------------------------------------------->
+
+    <div class="active-btn">
+
+      <a href="index.html" class="nav-link">
+       HOME
+      </a>
+
+    </div>
+
+    <!---------------------------------------------- ABOUT PAGE -------------------------------------------------------------------->
+
+    <details class="about-dropdown-wrapper">
+
+      <summary class="about-dropdown-summary">
+
+        <span class="nav-link">
+          ABOUT
+        </span>
+
+        <div class="dropdown-dot"></div>
+
+      </summary>
+
+      <!------------------------------------- ABOUT DROPDOWN CATEGORIES -------------------------------------------------------------->
+
+      <div class="dropdown-menu about-menu">
+
+      <div class="dropdown-grid">
+  <div class="dropdown-column">
+
+    <a href="ABOUT.html#about-dambanang" class="dropdown-link">
+                <span>About the Dambanang Aguinaldo</span>
+            </a>
+
+            <a href="ABOUT.html#history-shrine" class="dropdown-link">
+                <span>History of the Aguinaldo Shrine</span>
+            </a>
+
+<a href="ABOUT.html#historical-spaces" class="dropdown-link">
+  <span>Historical Spaces</span>
+</a>
+
+  </div>
+</div>
+</div>
+    </details>
+
+  </div>
+  <!-- CENTER NAV -->
+<div class="logo-center">
+   <img src="https://timelessin3d.github.io/Dambanang-Aguinaldo/images/logo.png" alt="Aguinaldo Shrine Logo">
+  </div>
+
+  <!-- RIGHT NAV -->
+
+  <div class="nav-right">
+
+    <!-------------------------------------------------------------- VIRTUAL TOUR PAGE ------------------------------------------------------->
+
+    <details class="virtual-dropdown-wrapper">
+
+      <summary class="virtual-dropdown-summary">
+
+        <span class="nav-link">
+          VIRTUAL TOUR
+        </span>
+
+        <div class="dropdown-dot"></div>
+
+      </summary>
+
+      <!---------------------------------------------------- VIRTUAL DROPDOWN CATEGORIES ------------------------------------------------------->
+
+      <div class="dropdown-menu virtual-menu">
+
+        <div class="dropdown-grid">
+
+          <div class="dropdown-column">
+
+            <a href="VIRTUAL-EXTERIOR.html" class="dropdown-link">
+  <span>Exterior</span>
+            </a>
+
+            <a href="VIRTUAL.html" class="dropdown-link">
+  <span>Hallway to Balcony </span>
+            </a>
+
+            <a href="VIRTUAL-UNKNOWN.html" class="dropdown-link">
+              <span>Grand Hall to Dining </span>
+            </a>
+            
+          </div>
+
+        </div>
+
+      </div>
+
+    </details>
+
+    <!---------------------------------------------------------------- RESEARCHERS PAGE ---------------------------------------------------------------->
+
+    <div class="nav-item">
+
+      <a href="RESEARCHERS.html" class="nav-link">
+  RESEARCHERS
+      </a>
+
+    </div>
+
+  </div>
+
+</header>
+
+<!-- =====================
+     HERO
+===================== -->
+
+<section class="hero">
+
+  
+
+  <div class="hero-content">
+
+    <h2>
+      3D INTERACTIVE<br>
+      AGUINALDO SHRINE
+    </h2>
+
+    <p>
+      Timeless in 3D: Interactive 3D Project of the
+      Dambanang Aguinaldo for Heritage Preservation
+    </p>
+
+    <a href="ABOUT.html" class="hero-btn">
+      LEARN MORE
+    </a>
+
+  </div>
+
+
+</section>
+
+<!-- ====================================================================================================================================================
+     								PREVIEW SECTION
+===================================================================================================================================================== -->
+
+<section class="preview-section">
+
+  <div class="section-line"></div>
+
+<div class="preview-container">
+
+  <!-- TEXT SIDE -->
+  <div class="preview-text">
+
+    <h2>MAIN 3D PREVIEW</h2>
+
+    <h4>Explore the Aguinaldo Shrine in 3D</h4>
+
+    <p>
+      Step inside the historic home where Philippine Independence
+      was proclaimed on June 12, 1898. This interactive 3D
+      experience allows visitors to freely explore the architectural
+      spaces and symbolic areas of the shrine through immersive
+      virtual navigation.
+    </p>
+
+    <a href="VIRTUAL-EXTERIOR.html" class="preview-btn">
+      LEARN MORE
+    </a>
+
+  </div>
+
+  <!-- IMAGE SIDE -->
+  <div class="preview-image">
+
+    <img src="https://timelessin3d.github.io/Dambanang-Aguinaldo/images/3d_sample.png" alt="3D Preview">
+
+  </div>
+
+</div>
+
+</section>
+
+
+<!-- =====================
+     INFO SECTION
+===================== -->
+
+<section class="info-section">
+
+  <div class="section-line"></div>
+
+  <div class="info-container">
+
+    <div class="historical-box">
+
+      <h2>HISTORICAL QUOTE</h2>
+
+      <h4>
+        “The Filipinos are called upon to defend their freedom
+        with their lives, because without freedom there can be
+        no true nation.”
+      </h4>
+
+      <p>
+        — Emilio Aguinaldo
+      </p>
+
+    </div>
+
+    <div class="visit-box">
+
+      <h2>Visit the Historic Aguinaldo Shrine</h2>
+
+      <h4>OPENING TIME</h4>
+
+      <div class="visit-line"></div>
+
+      <div class="visit-item">
+
+        <span>◉</span>
+
+        <div>
+
+          <h5>Visiting Hours</h5>
+
+          <p>
+            Tuesday to Sunday<br>
+            8:00 AM – 4:00 PM<br>
+            Closed during certain holidays and official maintenance schedules
+          </p>
+
+        </div>
+
+      </div>
+
+      <div class="visit-item">
+
+        <span>◉</span>
+
+        <div>
+
+          <h5>Location</h5>
+
+          <p>
+            Kawit, Cavite, Philippines<br>
+            Near the Aguinaldo Freedom Park and town plaza
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- =====================
+     FOOTER
+===================== -->
+
+<footer>
+
+  <div class="footer-container">
+
+  <img src="https://timelessin3d.github.io/Dambanang-Aguinaldo/images/logo.png" alt="The Dambanang Aguinaldo" style="width:250px; height:auto;">
+
+    <p>Interactive Heritage Visualization</p>
+
+    <p>Bachelor of Multimedia Arts Thesis Project</p>
+
+    <p>St. Dominic College of Asia | 2026</p>
+
+    <p class="copyright">
+      © 2026 Dambanang Aguinaldo | Developed with Web Technologies and 3D Visualization Tools
+    </p>
+
+  </div>
+
+</footer>
+
+<!-- =====================================================================================================================================================
+     									Forda not overlapping choice box
+====================================================================================================================================================== -->
+
+<script>
+
+const dropdowns = document.querySelectorAll(
+  '.about-dropdown-wrapper, .virtual-dropdown-wrapper'
+);
+
+dropdowns.forEach((dropdown) => {
+
+  dropdown.addEventListener('toggle', () => {
+
+    if (dropdown.open) {
+
+      dropdowns.forEach((otherDropdown) => {
+
+        if (otherDropdown !== dropdown) {
+          otherDropdown.removeAttribute('open');
+        }
+
+      });
+
+    }
+
+  });
+
+});
+
+</script>
+<script>
+
+const music = document.getElementById("bg-music");
+const musicToggle = document.getElementById("music-toggle");
+
+/* START WITH SOUND ON */
+music.volume = 0.4;
+
+/* TOGGLE BUTTON */
+
+musicToggle.addEventListener("click", () => {
+
+  if(music.muted){
+
+    music.muted = false;
+    musicToggle.textContent = "🔊";
+
+  } else {
+
+    music.muted = true;
+    musicToggle.textContent = "🔇";
+
+  }
+
+});
+
+</script>
+</body>
+</html>

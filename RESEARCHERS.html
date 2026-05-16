@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Researchers | Dambanang Aguinaldo</title>
+
+<!-- FONT -->
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+/* =========================
+   ROOT COLORS (EXTRACTED)
+========================= */
+:root{
+  --jaguar:#06030A;
+  --white:#ffffff;
+  --blaze-orange:#f96800;
+  --yellow-orange:#ffb200;
+  --dark-purple:#3a1f63;
+  --meteorite:#412b6b;
+  --butterfly-bush:#5c3e94;
+}
+
+body{
+  padding-top:90px;
+}
+/* =========================
+   BASE
+========================= */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  font-family:'Montserrat', sans-serif;
+  background:var(--jaguar);
+  color:var(--white);
+}
+
+/* =========================
+   HEADER CSS
+========================= */
+
+header{
+  width:100%;
+  height:75px;
+
+  background:
+  radial-gradient(circle at 50% 50%,
+  var(--dark-purple),
+  #000000);
+
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+
+  padding:0 40px;
+
+  position:fixed;
+  top:0;
+  left:0;
+  z-index:1000;
+}
+
+/* NAV */
+
+.nav-left,
+.nav-right{
+  display:flex;
+  align-items:center;
+  gap:20px;
+  justify-content:center;
+}
+
+.nav-item{
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+
+/* CENTER LOGO */
+
+.logo-center{
+  position:absolute;
+  left:50%;
+  transform:translateX(-50%);
+  display:flex;
+  align-items:center;
+}
+
+.logo-center img{
+  width:200px;
+  height:auto;
+}
+
+/* LINKS */
+
+.nav-link{
+  font-size:15px;
+  font-weight:600;
+  letter-spacing:1px;
+  transition:0.3s ease;
+  color:white;
+  text-decoration:none;
+}
+
+.nav-link:hover{
+  color:var(--yellow-orange);
+  transform:scale(1.08);
+}
+
+/* ACTIVE BUTTON */
+
+.active-btn{
+  background:transparent;
+  height:75px;
+  min-width:88px;
+
+  padding:0 24px;
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+.active-btn .nav-link{
+  color:var(--yellow-orange);
+}
+
+/* DROPDOWN DOT */
+
+.dropdown-dot{
+  width:20px;
+  height:20px;
+
+  background:var(--blaze-orange);
+  border-radius:50%;
+
+  position:relative;
+
+  box-shadow:-3px 3px 8px rgba(255,178,0,0.5);
+
+  transition:0.35s ease;
+}
+
+.dropdown-dot::after{
+  content:"";
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%, -70%);
+  border-left:5px solid transparent;
+  border-right:5px solid transparent;
+  border-bottom:8px solid white;
+}
+
+/* ROTATE */
+
+.about-dropdown-wrapper[open] .dropdown-dot,
+.virtual-dropdown-wrapper[open] .dropdown-dot{
+  transform:rotate(180deg);
+}
+
+/* ABOUT */
+
+.about-dropdown-wrapper{
+  position:relative;
+}
+
+.about-dropdown-wrapper summary::-webkit-details-marker{
+  display:none;
+}
+
+.about-dropdown-summary{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  cursor:pointer;
+  list-style:none;
+}
+
+/* VIRTUAL */
+
+.virtual-dropdown-wrapper{
+  position:relative;
+}
+
+.virtual-dropdown-wrapper summary::-webkit-details-marker{
+  display:none;
+}
+
+.virtual-dropdown-summary{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  cursor:pointer;
+  list-style:none;
+}
+
+/* DROPDOWN MENU */
+
+.dropdown-menu{
+  position:fixed;
+
+  top:75px;
+  left:0;
+
+  width:100%;
+
+  background:var(--yellow-orange);
+
+  padding:40px 138px;
+
+  box-shadow:0 10px 30px rgba(0,0,0,0.25);
+
+  z-index:999;
+
+  opacity:0;
+  visibility:hidden;
+
+  transform:translateY(-10px);
+
+  transition:0.35s ease;
+}
+
+.about-dropdown-wrapper[open] .dropdown-menu,
+.virtual-dropdown-wrapper[open] .dropdown-menu{
+  opacity:1;
+  visibility:visible;
+  transform:translateY(0);
+}
+
+/* GRID */
+
+.dropdown-grid{
+  width:100%;
+}
+
+.dropdown-column{
+  display:flex;
+  justify-content:space-between;
+  width:100%;
+}
+
+/* DROPDOWN LINKS */
+
+.dropdown-link{
+  position:relative;
+  padding-bottom:10px;
+  width:280px;
+  text-decoration:none;
+}
+
+.dropdown-link span{
+  font-size:15px;
+  font-weight:500;
+  color:white;
+  transition:0.35s ease;
+}
+
+.dropdown-link::after{
+  content:"";
+  width:100%;
+  height:2px;
+  background:white;
+
+  position:absolute;
+  left:0;
+  bottom:0;
+
+  transform:scaleX(1);
+  transform-origin:left;
+
+  transition:
+  transform 0.45s ease-in-out,
+  background 0.35s ease;
+}
+
+.dropdown-link:hover::after{
+  background:var(--blaze-orange);
+  transform:scaleX(0.92);
+}
+
+.dropdown-link:hover span{
+  color:var(--blaze-orange);
+}
+/* =========================
+   CONTAINER
+========================= */
+.container{
+  max-width:1100px;
+  margin:auto;
+  padding:40px 20px;
+}
+
+h1,h2{
+  text-align:center;
+  margin-bottom:20px;
+}
+
+/* =========================
+   INTRO TEXT
+========================= */
+.intro{
+  max-width:800px;
+  margin:0 auto 40px;
+  text-align:center;
+  line-height:1.7;
+  color:#ddd;
+}
+
+/* =========================
+   GRID 
+========================= */
+.grid{
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:20px;
+}
+
+.card{
+  width:320px;
+}
+
+/* =========================
+   ❄️ FROZEN GLASS STYLE (UPDATED BOX DESIGN)
+========================= */
+.card{
+  background:rgba(255,255,255,0.06);
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
+
+  border:1px solid rgba(255,255,255,0.12);
+  border-top:1px solid rgba(255,255,255,0.25);
+
+  border-radius:14px;
+
+  padding:20px;
+
+  box-shadow:
+    0 8px 25px rgba(0,0,0,0.25),
+    inset 0 1px 0 rgba(255,255,255,0.08);
+}
+
+/* NO HOVER EFFECT */
+.card:hover{
+  transform:none;
+}
+
+/* TEXT INSIDE CARDS */
+.card h3{
+  font-size:18px;
+  margin-bottom:5px;
+}
+
+.role{
+  font-weight:600;
+  color:var(--yellow-orange);
+  display:block;
+  margin-bottom:10px;
+}
+
+.card p{
+  font-size:14px;
+  line-height:1.6;
+  color:#e5e5e5;
+}
+
+
+/* =========================
+   PARAGRAPH SECTION
+========================= */
+.paragraph{
+  max-width:800px;
+  margin:auto;
+  text-align:justify;
+  line-height:1.8;
+  color:#ddd;
+}
+
+/* =========================
+   FOOTER (EXTRACTED STYLE MATCH)
+========================= */
+footer{
+  margin-top:60px;
+  background:radial-gradient(circle at center, var(--dark-purple), #000);
+  padding:50px 20px;
+  text-align:center;
+}
+
+footer p{
+  font-size:12px;
+  color:#ddd;
+  line-height:1.6;
+}
+
+.copyright{
+  color:var(--yellow-orange);
+  font-size:10px;
+  margin-top:10px;
+}
+
+/* =========================
+   RESPONSIVE 
+========================= */
+
+@media(max-width:1024px){
+
+  header{
+    padding:0 32px;
+  }
+
+  .logo-center img{
+    width:160px;
+  }
+
+  .dropdown-menu{
+    padding:35px 32px;
+  }
+
+  .dropdown-column{
+    gap:25px;
+    flex-wrap:wrap;
+  }
+
+  .dropdown-link{
+    width:auto;
+  }
+
+}
+
+
+@media(max-width:768px){
+
+  body{
+    padding-top:240px;
+  }
+
+  header{
+    height:auto;
+    padding:14px 16px 18px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:14px;
+  }
+
+  /* LOGO TOP */
+
+  .logo-center{
+    order:-1;
+    position:static;
+    transform:none;
+
+    width:100%;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+  }
+
+  .logo-center img{
+    width:125px;
+  }
+
+  /* TWO ROW NAVIGATION */
+
+  .nav-left,
+  .nav-right{
+    width:100%;
+
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+  }
+
+  /* BUTTON STYLE */
+
+  .nav-item,
+  .active-btn,
+  .about-dropdown-summary,
+  .virtual-dropdown-summary{
+    width:100%;
+    min-height:52px;
+
+    background:rgba(255,255,255,0.06);
+
+    border-radius:12px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    padding:14px 16px;
+  }
+
+  .active-btn{
+    height:auto;
+  }
+
+  .nav-link{
+    font-size:13px;
+    text-align:center;
+  }
+
+  /* DROPDOWN */
+
+  .about-dropdown-wrapper,
+  .virtual-dropdown-wrapper{
+    width:100%;
+  }
+
+  .about-dropdown-summary,
+  .virtual-dropdown-summary{
+    justify-content:center;
+    gap:10px;
+  }
+
+  .dropdown-menu{
+    position:absolute;
+
+    width:100%;
+
+    margin-top:10px;
+
+    padding:18px 16px;
+
+    border-radius:14px;
+
+    transform:none;
+  }
+
+  .dropdown-column{
+    flex-direction:column;
+    gap:18px;
+  }
+
+  .dropdown-link{
+    width:100%;
+  }
+
+  .container{
+    padding:25px 15px;
+  }
+
+  h1{
+    font-size:22px;
+  }
+
+  h2{
+    font-size:18px;
+  }
+
+  .card{
+    padding:16px;
+  }
+
+  .intro,
+  .paragraph{
+    font-size:14px;
+  }
+
+}
+</style>
+</head>
+
+<body>
+<!-- HEADER -->
+
+<header>
+
+<div class="nav-left">
+
+<div class="nav-item">
+<a href="index.html" class="nav-link">HOME</a>
+</div>
+
+<details class="about-dropdown-wrapper">
+
+<summary class="about-dropdown-summary">
+
+<span class="nav-link">
+ABOUT
+</span>
+
+<div class="dropdown-dot"></div>
+
+</summary>
+
+<div class="dropdown-menu about-menu">
+
+<div class="dropdown-grid">
+
+<div class="dropdown-column">
+
+<a href="ABOUT.html#about-dambanang" class="dropdown-link">
+<span>About the Dambanang Aguinaldo</span>
+</a>
+
+<a href="ABOUT.html#history-shrine" class="dropdown-link">
+<span>History of the Aguinaldo Shrine</span>
+</a>
+
+<a href="ABOUT.html#historical-spaces" class="dropdown-link">
+<span>Historical Spaces</span>
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</details>
+
+</div>
+
+<!-- CENTER LOGO -->
+
+<div class="logo-center">
+
+<img src="https://timelessin3d.github.io/Dambanang-Aguinaldo/images/logo.png"
+alt="Aguinaldo Shrine Logo">
+
+</div>
+
+<div class="nav-right">
+
+<details class="virtual-dropdown-wrapper">
+
+<summary class="virtual-dropdown-summary">
+
+<span class="nav-link">
+VIRTUAL TOUR
+</span>
+
+<div class="dropdown-dot"></div>
+
+</summary>
+
+<div class="dropdown-menu virtual-menu">
+
+<div class="dropdown-grid">
+
+<div class="dropdown-column">
+
+<a href="VIRTUAL-EXTERIOR.html" class="dropdown-link">
+<span>Exterior</span>
+</a>
+
+<a href="VIRTUAL.html" class="dropdown-link">
+<span>Hallway to Balcony</span>
+</a>
+
+<a href="VIRTUAL-UNKNOWN.html" class="dropdown-link">
+<span>Grand Hall to Dining</span>
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</details>
+
+<div class="nav-item active-btn">
+<a href="RESEARCHERS.html" class="nav-link">
+RESEARCHERS
+</a>
+</div>
+
+</div>
+
+</header>
+
+<div class="container">
+
+  <h1>Researchers</h1>
+
+  <p class="intro">
+    The Dambanang Aguinaldo: A Digital Heritage Experience is a capstone project developed
+    to preserve cultural heritage through a 3D interactive web platform combining research,
+    design, and development.
+  </p>
+
+  <!-- =========================
+       ADVISERS
+  ========================= -->
+  <h2>Project Advisers</h2>
+
+  <div class="grid">
+
+    <div class="card">
+      <h3>DR. RICHARDSON MOJICA</h3>
+      <span class="role">Academic Adviser</span>
+      <p>Provided academic supervision and ensured research alignment with institutional requirements.</p>
+    </div>
+
+    <div class="card">
+      <h3>MR. EMIL LOS BANOS </h3>
+      <span class="role">Thesis Adviser</span>
+      <p>Supervised research development methodology, documentation, and thesis structure.</p>
+    </div>
+
+    <div class="card center-card">
+      <h3>MR. HARISH CERDINA</h3>
+      <span class="role">Creative Adviser</span>
+      <p>Guided design direction, visual design, presentation style, and creative execution of the project.</p>
+    </div>
+
+  </div>
+
+  <!-- =========================
+       STUDENTS
+  ========================= -->
+  <h2 style="margin-top:50px;">Research & Development Team</h2>
+
+  <div class="grid">
+
+    <div class="card">
+      <h3>CHARLENE MAE V. ALAS, </h3>
+      <span class="role">Lead Developer</span>
+      <p>Handled system structure and overall development of the platform.</p>
+    </div>
+
+    <div class="card">
+      <h3>HANNAH MAE L. DABU</h3>
+      <span class="role">UI/UX Designer</span>
+      <p>Designed interface layout and user experience flow.</p>
+    </div>
+
+    <div class="card center-card">
+      <h3>RENATO DERESMA JR.</h3>
+      <span class="role">3D Developer</span>
+      <p>Created and optimized the 3D heritage model for the virtual tour system.</p>
+    </div>
+
+  </div>
+
+  <!-- =========================
+       CONTRIBUTION PARAGRAPH
+  ========================= -->
+  <h2 style="margin-top:50px;">Project Contributions</h2>
+
+  <p class="paragraph">
+    The project was developed through a collaborative effort involving historical research,
+    website development, 3D modeling, and user interface design. Each member contributed
+    to different aspects of the system including content development, visual design,
+    technical implementation, and integration of the virtual tour. The combined work
+    resulted in an interactive digital heritage platform that presents Dambanang Aguinaldo
+    in an immersive and educational experience.
+  </p>
+
+  <!-- =========================
+       ACKNOWLEDGEMENT
+  ========================= -->
+  <h2 style="margin-top:50px;">Acknowledgement</h2>
+
+  <p class="paragraph">
+    The researchers would like to express their deepest gratitude to those who supported and guided them throughout the completion of this research and digital heritage project. <br>
+<br>
+Special thanks to the National Historical Commission of the Philippines (NHCP) and the Museo ni Emilio Aguinaldo, whose historical documentation and cultural preservation efforts inspired the foundation of this study.
+
+The researchers also extend appreciation to their advisers, panel members, families, and friends for their encouragement, guidance, and continued support throughout the development of the project.<br>
+<br>
+Lastly, the researchers thank each member of the research team for their dedication, creativity, and collaboration. This project would not have been possible without the shared vision and effort of everyone involved.</p>
+
+</div>
+<!-- FOOTER -->
+
+<footer>
+  <div class="footer-container">
+
+<img src="https://timelessin3d.github.io/Dambanang-Aguinaldo/images/logo.png"
+alt="The Dambanang Aguinaldo"
+style="width:250px; height:auto;">
+
+  <p>Interactive Heritage Visualization</p>
+  <p>Bachelor of Multimedia Arts Thesis Project</p>
+  <p>St. Dominic College of Asia | 2026</p>
+  <p class="copyright">© 2026 Dambanang Aguinaldo</p>
+</footer>
+<script>
+
+const dropdowns = document.querySelectorAll(
+'.about-dropdown-wrapper, .virtual-dropdown-wrapper'
+);
+
+dropdowns.forEach((dropdown) => {
+
+dropdown.addEventListener('toggle', () => {
+
+if (dropdown.open) {
+
+dropdowns.forEach((otherDropdown) => {
+
+if (otherDropdown !== dropdown) {
+otherDropdown.removeAttribute('open');
+}
+
+});
+
+}
+
+});
+
+});
+
+</script>
+</body>
+</html>
